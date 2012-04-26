@@ -6,6 +6,9 @@ public class Score {
 	private Score() {}
 	
 	public static int calculate(String[] permissions) {
+		if(permissions == null)
+			return 0;
+		
 		int score = 0;
 		for(String permission : permissions) {
 			if(permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION))
