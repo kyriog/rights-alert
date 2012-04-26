@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, RightsalertActivity!</string>
     <string name="app_name">Rights alert</string>
+    <string name="applist_loading">Loading applications…</string>
+    <string name="applist_cancel">Cancel</string>
 
 </resources>
