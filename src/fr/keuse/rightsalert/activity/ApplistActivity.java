@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
 	private ProgressDialog progress;
@@ -19,6 +20,8 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applist);
         
+        TextView count = (TextView) findViewById(R.id.applist_count);
+        
         PackageManager pm = getPackageManager();
         
         progress = new ProgressDialog(this);
@@ -29,7 +32,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
         progress.setOnCancelListener(this);
         
-        handler = new LoadApplicationsHandler(progress);
+        handler = new LoadApplicationsHandler(progress, this, count);
         thread = new LoadApplicationsThread(pm, handler);
         thread.start();
     }

@@ -4,5 +4,6 @@
     <string name="app_name">Rights alert</string>
     <string name="applist_loading">Loading applications…</string>
     <string name="applist_cancel">Cancel</string>
+    <string name="applist_count">There are %1$d dangerous applications.</string>
 
 </resources>
