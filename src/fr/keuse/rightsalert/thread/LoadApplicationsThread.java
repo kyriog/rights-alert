@@ -40,7 +40,8 @@ public class LoadApplicationsThread extends Thread {
 			handler.sendMessage(msg);
 			
 			Application app = new Application(p, pm);
-			applications.add(app);
+			if(app.isDangerous())
+				applications.add(app);
 			
 			try {
 				// Sleep for 10 ms on each PackageInfo to prevent lags on the application
