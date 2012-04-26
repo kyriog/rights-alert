@@ -2,19 +2,18 @@ package fr.keuse.rightsalert.entity;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionInfo;
 import android.graphics.drawable.Drawable;
 
 public class Application {
 	private String name;
 	private Drawable icon;
 	private int score = -1;
-	private PermissionInfo[] permissions;
+	private String[] permissions;
 	
 	public Application(PackageInfo p, PackageManager pm) {
 		name = (String) p.applicationInfo.loadLabel(pm);
 		icon = pm.getApplicationIcon(p.applicationInfo);
-		permissions = p.permissions;
+		permissions = p.requestedPermissions;
 	}
 	
 	public String getName() {
@@ -35,10 +34,10 @@ public class Application {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public PermissionInfo[] getPermissions() {
+	public String[] getPermissions() {
 		return permissions;
 	}
-	public void setPermissions(PermissionInfo[] permissions) {
+	public void setPermissions(String[] permissions) {
 		this.permissions = permissions;
 	}
 }
