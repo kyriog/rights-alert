@@ -1,5 +1,6 @@
 package fr.keuse.rightsalert.entity;
 
+import fr.keuse.rightsalert.helper.Score;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ public class Application {
 		name = (String) p.applicationInfo.loadLabel(pm);
 		icon = pm.getApplicationIcon(p.applicationInfo);
 		permissions = p.requestedPermissions;
+		score = Score.calculate(permissions);
 	}
 	
 	public String getName() {
@@ -39,5 +41,9 @@ public class Application {
 	}
 	public void setPermissions(String[] permissions) {
 		this.permissions = permissions;
+	}
+	
+	public boolean isDangerous() {
+		return Score.isDangerous(score);
 	}
 }
