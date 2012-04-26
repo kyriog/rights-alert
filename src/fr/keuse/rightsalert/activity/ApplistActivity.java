@@ -12,6 +12,7 @@ import android.os.Bundle;
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
 	private ProgressDialog progress;
 	private LoadApplicationsHandler handler;
+	private LoadApplicationsThread thread;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         progress.setOnCancelListener(this);
         
         handler = new LoadApplicationsHandler(progress);
-        LoadApplicationsThread thread = new LoadApplicationsThread(pm, handler);
+        thread = new LoadApplicationsThread(pm, handler);
         thread.start();
     }
 
@@ -41,6 +42,8 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 	}
 
 	public void onCancel(DialogInterface dialog) {
-		
+		thread.interrupt();
+		progress.dismiss();
+		finish();
 	}
 }

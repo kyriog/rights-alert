@@ -30,6 +30,9 @@ public class LoadApplicationsThread extends Thread {
 		handler.sendMessage(msg);
 		
 		for(PackageInfo p : packages) {
+			if(isInterrupted())
+				return;
+			
 			msg = handler.obtainMessage();
 			msg.arg1 = LoadApplicationsHandler.MSG_UPDATE_PROGRESS;
 			msg.arg2 = packages.indexOf(p);
