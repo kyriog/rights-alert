@@ -1,6 +1,10 @@
 package fr.keuse.rightsalert.activity;
 
+import java.util.ArrayList;
+
 import fr.keuse.rightsalert.R;
+import fr.keuse.rightsalert.adapter.ApplistAdapter;
+import fr.keuse.rightsalert.entity.Application;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 import fr.keuse.rightsalert.thread.LoadApplicationsThread;
 import android.app.Activity;
@@ -8,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
@@ -21,6 +26,12 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         setContentView(R.layout.applist);
         
         TextView count = (TextView) findViewById(R.id.applist_count);
+        ListView list = (ListView) findViewById(R.id.applist_list);
+        
+        ArrayList<Application> applications = new ArrayList<Application>();
+        ApplistAdapter adapter = new ApplistAdapter(this, applications);
+        
+        list.setAdapter(adapter);
         
         PackageManager pm = getPackageManager();
         
@@ -32,7 +43,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
         progress.setOnCancelListener(this);
         
-        handler = new LoadApplicationsHandler(progress, this, count);
+        handler = new LoadApplicationsHandler(progress, this, count, adapter, applications);
         thread = new LoadApplicationsThread(pm, handler);
         thread.start();
     }
