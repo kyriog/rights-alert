@@ -13,22 +13,24 @@ import android.os.Message;
 public class LoadApplicationsThread extends Thread {
 	PackageManager pm;
 	LoadApplicationsHandler handler;
+	private List<PackageInfo> packages;
 	
-	public LoadApplicationsThread(PackageManager pm, LoadApplicationsHandler handler) {
+	public LoadApplicationsThread(PackageManager pm) {
 		this.pm = pm;
+		packages = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+	}
+	
+	public void setHandler(LoadApplicationsHandler handler) {
 		this.handler = handler;
 	}
 
 	@Override
 	public void run() {
-		List<PackageInfo> packages = pm.getInstalledPackages(PackageManager.GET_PERMISSIONS);
 		ArrayList<Application> applications = new ArrayList<Application>();
 		
-		Message msg = handler.obtainMessage();
-		msg.arg1 = LoadApplicationsHandler.MSG_START_PROGRESS;
-		msg.arg2 = packages.size();
-		handler.sendMessage(msg);
+		sendOpenPopup();
 		
+		Message msg;
 		for(PackageInfo p : packages) {
 			if(isInterrupted())
 				return;
@@ -54,6 +56,13 @@ public class LoadApplicationsThread extends Thread {
 		msg = handler.obtainMessage();
 		msg.arg1 = LoadApplicationsHandler.MSG_FINISH_PROGRESS;
 		msg.obj = applications;
+		handler.sendMessage(msg);
+	}
+	
+	public void sendOpenPopup() {
+		Message msg = handler.obtainMessage();
+		msg.arg1 = LoadApplicationsHandler.MSG_START_PROGRESS;
+		msg.arg2 = packages.size();
 		handler.sendMessage(msg);
 	}
 }

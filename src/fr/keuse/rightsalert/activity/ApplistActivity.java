@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
 	private ProgressDialog progress;
-	private LoadApplicationsHandler handler;
-	private LoadApplicationsThread thread;
+	private static LoadApplicationsThread thread;
+	private static ArrayList<Application> applications;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         TextView count = (TextView) findViewById(R.id.applist_count);
         ListView list = (ListView) findViewById(R.id.applist_list);
         
-        ArrayList<Application> applications = new ArrayList<Application>();
+        if(applications == null)
+        	applications = new ArrayList<Application>();
         ApplistAdapter adapter = new ApplistAdapter(this, applications);
         
         list.setAdapter(adapter);
@@ -42,11 +43,26 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         progress.setMessage(getString(R.string.applist_loading));
         progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
         progress.setOnCancelListener(this);
+    
+        LoadApplicationsHandler handler = new LoadApplicationsHandler(progress, this, count, adapter, applications);
         
-        handler = new LoadApplicationsHandler(progress, this, count, adapter, applications);
-        thread = new LoadApplicationsThread(pm, handler);
-        thread.start();
+        if(thread == null) {
+	        thread = new LoadApplicationsThread(pm);
+	        thread.start();
+        }
+        thread.setHandler(handler);
+        if(thread.isAlive())
+        	thread.sendOpenPopup();
+        else
+        	handler.refreshView();
     }
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(progress.isShowing())
+			progress.dismiss();
+	}
 
 	public void onClick(DialogInterface dialog, int which) {
 		switch(which) {

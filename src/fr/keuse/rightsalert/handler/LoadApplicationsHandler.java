@@ -45,10 +45,13 @@ public class LoadApplicationsHandler extends Handler {
 			break;
 		case MSG_FINISH_PROGRESS:
 			applications.addAll((List<Application>) msg.obj);
-			adapter.notifyDataSetChanged();
-			count.setText(activity.getString(R.string.applist_count, applications.size()));
+			refreshView();
 			progress.dismiss();
 		}
 	}
-
+	
+	public void refreshView() {
+		adapter.notifyDataSetChanged();
+		count.setText(activity.getString(R.string.applist_count, applications.size()));
+	}
 }
