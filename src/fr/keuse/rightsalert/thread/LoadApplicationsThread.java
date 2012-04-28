@@ -13,8 +13,8 @@ import android.content.pm.PackageManager;
 import android.os.Message;
 
 public class LoadApplicationsThread extends Thread {
-	PackageManager pm;
-	LoadApplicationsHandler handler;
+	private PackageManager pm;
+	private LoadApplicationsHandler handler;
 	private List<PackageInfo> packages;
 	
 	public LoadApplicationsThread(PackageManager pm) {
