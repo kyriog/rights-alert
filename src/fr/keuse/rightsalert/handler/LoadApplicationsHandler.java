@@ -3,14 +3,11 @@ package fr.keuse.rightsalert.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.keuse.rightsalert.R;
-import fr.keuse.rightsalert.adapter.ApplistAdapter;
+import fr.keuse.rightsalert.activity.ApplistActivity;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.TextView;
 
 public class LoadApplicationsHandler extends Handler {
 	public final static int MSG_START_PROGRESS = 1;
@@ -18,16 +15,12 @@ public class LoadApplicationsHandler extends Handler {
 	public final static int MSG_FINISH_PROGRESS = 3;
 	
 	private ProgressDialog progress;
-	private Activity activity;
-	private TextView count;
-	private ApplistAdapter adapter;
+	private ApplistActivity activity;
 	private ArrayList<ApplicationEntity> applications;
 	
-	public LoadApplicationsHandler(ProgressDialog progress, Activity activity, TextView count, ApplistAdapter adapter, ArrayList<ApplicationEntity> applications) {
+	public LoadApplicationsHandler(ProgressDialog progress, ApplistActivity activity, ArrayList<ApplicationEntity> applications) {
 		this.progress = progress;
 		this.activity = activity;
-		this.count = count;
-		this.adapter = adapter;
 		this.applications = applications;
 	}
 	
@@ -45,13 +38,10 @@ public class LoadApplicationsHandler extends Handler {
 			break;
 		case MSG_FINISH_PROGRESS:
 			applications.addAll((List<ApplicationEntity>) msg.obj);
-			refreshView();
+			activity.refreshView();
 			progress.dismiss();
 		}
 	}
 	
-	public void refreshView() {
-		adapter.notifyDataSetChanged();
-		count.setText(activity.getString(R.string.applist_count, applications.size()));
-	}
+	
 }
