@@ -45,7 +45,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 	        
 	        progress.setProgress(0);
 	        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-	        progress.setTitle(getString(R.string.app_name));
+	        progress.setTitle(getString(R.string.applist_loading));
 	        progress.setMessage(getString(R.string.applist_loading));
 	        progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
 	        progress.setOnCancelListener(this);
