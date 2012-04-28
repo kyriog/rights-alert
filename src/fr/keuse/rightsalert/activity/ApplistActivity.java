@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
-import fr.keuse.rightsalert.entity.Application;
+import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 import fr.keuse.rightsalert.thread.LoadApplicationsThread;
 import android.app.Activity;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
 	private ProgressDialog progress;
 	private static LoadApplicationsThread thread;
-	private static ArrayList<Application> applications;
+	private static ArrayList<ApplicationEntity> applications;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         ListView list = (ListView) findViewById(R.id.applist_list);
         
         if(applications == null)
-        	applications = new ArrayList<Application>();
+        	applications = new ArrayList<ApplicationEntity>();
         ApplistAdapter adapter = new ApplistAdapter(this, applications);
         
         list.setAdapter(adapter);

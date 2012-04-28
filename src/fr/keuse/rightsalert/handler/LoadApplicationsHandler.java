@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
-import fr.keuse.rightsalert.entity.Application;
+import fr.keuse.rightsalert.entity.ApplicationEntity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Handler;
@@ -21,9 +21,9 @@ public class LoadApplicationsHandler extends Handler {
 	private Activity activity;
 	private TextView count;
 	private ApplistAdapter adapter;
-	private ArrayList<Application> applications;
+	private ArrayList<ApplicationEntity> applications;
 	
-	public LoadApplicationsHandler(ProgressDialog progress, Activity activity, TextView count, ApplistAdapter adapter, ArrayList<Application> applications) {
+	public LoadApplicationsHandler(ProgressDialog progress, Activity activity, TextView count, ApplistAdapter adapter, ArrayList<ApplicationEntity> applications) {
 		this.progress = progress;
 		this.activity = activity;
 		this.count = count;
@@ -44,7 +44,7 @@ public class LoadApplicationsHandler extends Handler {
 			progress.setMessage((String) msg.obj);
 			break;
 		case MSG_FINISH_PROGRESS:
-			applications.addAll((List<Application>) msg.obj);
+			applications.addAll((List<ApplicationEntity>) msg.obj);
 			refreshView();
 			progress.dismiss();
 		}

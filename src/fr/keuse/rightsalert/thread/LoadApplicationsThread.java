@@ -3,7 +3,7 @@ package fr.keuse.rightsalert.thread;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.keuse.rightsalert.entity.Application;
+import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 
 import android.content.pm.PackageInfo;
@@ -26,7 +26,7 @@ public class LoadApplicationsThread extends Thread {
 
 	@Override
 	public void run() {
-		ArrayList<Application> applications = new ArrayList<Application>();
+		ArrayList<ApplicationEntity> applications = new ArrayList<ApplicationEntity>();
 		
 		sendOpenPopup();
 		
@@ -41,7 +41,7 @@ public class LoadApplicationsThread extends Thread {
 			msg.obj = pm.getApplicationLabel(p.applicationInfo).toString();
 			handler.sendMessage(msg);
 			
-			Application app = new Application(p, pm);
+			ApplicationEntity app = new ApplicationEntity(p, pm);
 			if(app.isDangerous())
 				applications.add(app);
 			

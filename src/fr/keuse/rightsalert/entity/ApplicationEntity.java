@@ -5,13 +5,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
-public class Application {
+public class ApplicationEntity {
 	private String name;
 	private Drawable icon;
 	private int score = -1;
 	private String[] permissions;
 	
-	public Application(PackageInfo p, PackageManager pm) {
+	public ApplicationEntity(PackageInfo p, PackageManager pm) {
 		name = (String) p.applicationInfo.loadLabel(pm);
 		icon = pm.getApplicationIcon(p.applicationInfo);
 		permissions = p.requestedPermissions;
