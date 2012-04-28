@@ -32,9 +32,6 @@ public class LoadApplicationsThread extends Thread {
 		
 		Message msg;
 		for(PackageInfo p : packages) {
-			if(isInterrupted())
-				return;
-			
 			msg = handler.obtainMessage();
 			msg.arg1 = LoadApplicationsHandler.MSG_UPDATE_PROGRESS;
 			msg.arg2 = packages.indexOf(p);
@@ -49,7 +46,7 @@ public class LoadApplicationsThread extends Thread {
 				// Sleep for 10 ms on each PackageInfo to prevent lags on the application
 				sleep(10);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				return;
 			}
 		}
 		
