@@ -32,6 +32,7 @@ Links
 -----
 
 * My website: http://www.cyrilglapa.com/
+* Rights alert on Google Play: https://play.google.com/store/apps/details?id=fr.keuse.rightsalert
 * Rights alert GitHub repository: https://github.com/cglapa/rights-alert/
 * Launcher image page: http://icones.pro/verrouillage-droits-securite-image-png.html
 * Sergio Sanchez Lopez's page: http://kde-look.org/usermanager/search.php?username=Sephiroth6779
