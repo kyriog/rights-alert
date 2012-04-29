@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fr.keuse.rightsalert.comparator.LinearLayoutComparator;
+import fr.keuse.rightsalert.comparator.ApplicationEntityComparator;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 
@@ -52,7 +52,7 @@ public class LoadApplicationsThread extends Thread {
 			}
 		}
 		
-		Collections.sort(applications, new LinearLayoutComparator());
+		Collections.sort(applications, new ApplicationEntityComparator());
 		
 		msg = handler.obtainMessage();
 		msg.arg1 = LoadApplicationsHandler.MSG_FINISH_PROGRESS;
