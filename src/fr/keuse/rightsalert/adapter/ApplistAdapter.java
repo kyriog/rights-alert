@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,16 +40,22 @@ public class ApplistAdapter extends BaseAdapter {
 		
 		ImageView icon = new ImageView(context);
 		TextView name = new TextView(context);
+		TextView score = new TextView(context);
 		LinearLayout view = new LinearLayout(context);
 		
 		icon.setImageDrawable(application.getIcon());
 		icon.setAdjustViewBounds(true);
 		icon.setMaxHeight(40);
+		
 		name.setText(application.getName());
+		
+		score.setText(String.valueOf(application.getScore()));
+		score.setGravity(Gravity.RIGHT);
 		
 		view.setOrientation(LinearLayout.HORIZONTAL);
 		view.addView(icon);
 		view.addView(name);
+		view.addView(score, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		
 		return view;
 	}
