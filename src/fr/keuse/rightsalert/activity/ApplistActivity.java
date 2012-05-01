@@ -6,10 +6,12 @@ import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
+import fr.keuse.rightsalert.preference.RightsalertPreference;
 import fr.keuse.rightsalert.thread.LoadApplicationsThread;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -77,6 +79,8 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.menu_settings:
+			Intent intent = new Intent(this, RightsalertPreference.class);
+			startActivity(intent);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
