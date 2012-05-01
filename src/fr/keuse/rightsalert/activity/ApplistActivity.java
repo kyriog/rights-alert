@@ -12,6 +12,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,6 +65,22 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         	refreshView();
         }
     }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+		case R.id.menu_settings:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	protected void onDestroy() {
