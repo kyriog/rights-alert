@@ -1,9 +1,11 @@
 package fr.keuse.rightsalert.activity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
+import fr.keuse.rightsalert.comparator.ApplicationEntityComparator;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 import fr.keuse.rightsalert.preference.RightsalertPreference;
@@ -12,8 +14,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +25,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ApplistActivity extends Activity implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
+	private final static int PREFERENCE_ACTIVITY_CODE = 1;
+	
 	private ProgressDialog progress;
 	private static LoadApplicationsThread thread;
 	private ArrayList<ApplicationEntity> applications;
@@ -80,10 +86,21 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 		switch(item.getItemId()) {
 		case R.id.menu_settings:
 			Intent intent = new Intent(this, RightsalertPreference.class);
-			startActivity(intent);
+			startActivityForResult(intent, PREFERENCE_ACTIVITY_CODE);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		case PREFERENCE_ACTIVITY_CODE:
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+			Collections.sort(applications, new ApplicationEntityComparator(preferences.getString("sorting", "name")));
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	@Override

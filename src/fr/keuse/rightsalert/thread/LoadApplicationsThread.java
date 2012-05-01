@@ -1,10 +1,8 @@
 package fr.keuse.rightsalert.thread;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import fr.keuse.rightsalert.comparator.ApplicationEntityComparator;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 
@@ -51,8 +49,6 @@ public class LoadApplicationsThread extends Thread {
 				return;
 			}
 		}
-		
-		Collections.sort(applications, new ApplicationEntityComparator());
 		
 		msg = handler.obtainMessage();
 		msg.arg1 = LoadApplicationsHandler.MSG_FINISH_PROGRESS;
