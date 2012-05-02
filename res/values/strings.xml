@@ -12,6 +12,7 @@
         <item>Name</item>
         <item>Score</item>
     </string-array>
+    <string name="preferences_showsystemapps">Show system applications</string>
     
     <string name="applist_loading">Loading applications…</string>
     <string name="applist_cancel">Cancel</string>

@@ -1,11 +1,9 @@
 package fr.keuse.rightsalert.activity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
-import fr.keuse.rightsalert.comparator.ApplicationEntityComparator;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 import fr.keuse.rightsalert.preference.RightsalertPreference;
@@ -52,23 +50,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         list.setAdapter(adapter);
         
         if(applications.size() == 0) {
-        	PackageManager pm = getPackageManager();
-	        
-	        progress.setProgress(0);
-	        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-	        progress.setTitle(getString(R.string.applist_loading));
-	        progress.setMessage(getString(R.string.applist_loading));
-	        progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
-	        progress.setOnCancelListener(this);
-	    
-	        LoadApplicationsHandler handler = new LoadApplicationsHandler(progress, this, applications);
-	        
-	        if(thread == null || !thread.isAlive()) {
-		        thread = new LoadApplicationsThread(pm);
-		        thread.start();
-	        }
-	        thread.setHandler(handler);
-        	thread.sendOpenPopup();
+        	loadApplications();
         } else {
         	refreshView();
         }
@@ -97,9 +79,8 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 		super.onActivityResult(requestCode, resultCode, data);
 		switch(requestCode) {
 		case PREFERENCE_ACTIVITY_CODE:
-			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-			Collections.sort(applications, new ApplicationEntityComparator(preferences.getString("sorting", "name")));
-			adapter.notifyDataSetChanged();
+			applications.clear();
+			loadApplications();
 		}
 	}
 
@@ -126,6 +107,27 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 		thread.interrupt();
 		progress.dismiss();
 		finish();
+	}
+	
+	public void loadApplications() {
+		PackageManager pm = getPackageManager();
+        
+        progress.setProgress(0);
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setTitle(getString(R.string.applist_loading));
+        progress.setMessage(getString(R.string.applist_loading));
+        progress.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.applist_cancel), this);
+        progress.setOnCancelListener(this);
+    
+        LoadApplicationsHandler handler = new LoadApplicationsHandler(progress, this, applications);
+        
+        if(thread == null || !thread.isAlive()) {
+        	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+	        thread = new LoadApplicationsThread(pm, preferences);
+	        thread.start();
+        }
+        thread.setHandler(handler);
+    	thread.sendOpenPopup();
 	}
 	
 	public void refreshView() {
