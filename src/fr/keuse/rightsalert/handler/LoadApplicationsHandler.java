@@ -1,17 +1,13 @@
 package fr.keuse.rightsalert.handler;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import fr.keuse.rightsalert.activity.ApplistActivity;
-import fr.keuse.rightsalert.comparator.ApplicationEntityComparator;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
 
 public class LoadApplicationsHandler extends Handler {
 	public final static int MSG_START_PROGRESS = 1;
@@ -42,8 +38,6 @@ public class LoadApplicationsHandler extends Handler {
 			break;
 		case MSG_FINISH_PROGRESS:
 			applications.addAll((List<ApplicationEntity>) msg.obj);
-			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity.getBaseContext());
-			Collections.sort(applications, new ApplicationEntityComparator(preferences.getString("sorting", "name")));
 			activity.refreshView();
 			progress.dismiss();
 		}
