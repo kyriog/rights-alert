@@ -10,7 +10,8 @@
 	        android:key="sorting"
 	        android:defaultValue="name" />
 	    <CheckBoxPreference
-	        android:title="@string/preferences_showsystemapps" 
+	        android:title="@string/preferences_showsystemapps_title"
+	        android:summary="@string/preferences_showsystemapps_summary"
 	        android:key="showsystemapps"
 	        android:defaultValue="true" />
 	</PreferenceCategory>
