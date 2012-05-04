@@ -46,6 +46,7 @@ public class ApplistAdapter extends BaseAdapter {
 		icon.setImageDrawable(application.getIcon());
 		icon.setAdjustViewBounds(true);
 		icon.setMaxHeight(40);
+		icon.setMaxWidth(40);
 		
 		name.setText(application.getName());
 		
