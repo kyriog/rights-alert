@@ -1,4 +1,4 @@
-Rights alert 0.1a
+Rights alert 0.2a
 =================
 
 License
@@ -19,14 +19,17 @@ The principle is simple: each permission represent an amount of points, and if t
 What's new?
 -----------
 
- + First release
- + Just displays a basic list of dangerous applications
+ + The score of each applications is displayed in the list
+ + The user is able to choose if he want to sort applications by name or by score
+ + The user can hide system applications
+ + French translation has been added
+ + Applications icons are now limited to 40 for width to fix a display bug
 
 In the next release…
 --------------------
 
- + The score of each applications will be displayed in the list
- + The user will be able to choose if he want to sort applications by name or by score
+ + An about popup will be added
+ + The user will be able to customize the score calculation algorithm
 
 Links
 -----
@@ -36,3 +39,10 @@ Links
 * Rights alert GitHub repository: https://github.com/cglapa/rights-alert/
 * Launcher image page: http://icones.pro/verrouillage-droits-securite-image-png.html
 * Sergio Sanchez Lopez's page: http://kde-look.org/usermanager/search.php?username=Sephiroth6779
+
+History
+-------
+
+### Version 0.1a
+ + First release
+ + Just displays a basic list of dangerous applications
