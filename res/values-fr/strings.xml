@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Rights alert</string>
+  <string name="menu_settings">Paramètres</string>
+  <string name="preferences_category_display">Affichage</string>
+  <string name="preferences_sorting_title">Classement</string>
+  <string name="preferences_sorting_dialogtitle">Trier par…</string>
+  <string-array name="preferences_sorting_array">
+    <item>Nom</item>
+    <item>Score</item>
+  </string-array>
+  <string name="preferences_showsystemapps_title">Applications système</string>
+  <string name="preferences_showsystemapps_summary">Afficher les applications système</string>
+  <string name="applist_loading">Chargement des applications…</string>
+  <string name="applist_cancel">Annuler</string>
+  <string name="applist_count">Il y a %1$d applications dangereuses.</string>
+</resources>
