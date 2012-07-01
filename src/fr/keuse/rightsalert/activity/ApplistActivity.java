@@ -6,6 +6,7 @@ import fr.keuse.rightsalert.R;
 import fr.keuse.rightsalert.adapter.ApplistAdapter;
 import fr.keuse.rightsalert.entity.ApplicationEntity;
 import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
+import fr.keuse.rightsalert.helper.Score;
 import fr.keuse.rightsalert.preference.RightsalertPreference;
 import fr.keuse.rightsalert.thread.LoadApplicationsThread;
 import android.app.Activity;
@@ -137,6 +138,7 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
         
         if(thread == null || !thread.isAlive()) {
         	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        	Score.setPreferences(preferences);
 	        thread = new LoadApplicationsThread(pm, preferences);
 	        thread.start();
         }
