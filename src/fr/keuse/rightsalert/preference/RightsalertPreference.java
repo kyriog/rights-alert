@@ -1,6 +1,7 @@
 package fr.keuse.rightsalert.preference;
 
 import fr.keuse.rightsalert.R;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 public class RightsalertPreference extends PreferenceActivity {
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
