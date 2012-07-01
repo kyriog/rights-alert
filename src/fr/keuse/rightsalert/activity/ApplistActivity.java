@@ -9,6 +9,7 @@ import fr.keuse.rightsalert.handler.LoadApplicationsHandler;
 import fr.keuse.rightsalert.preference.RightsalertPreference;
 import fr.keuse.rightsalert.thread.LoadApplicationsThread;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,9 +17,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -69,6 +72,17 @@ public class ApplistActivity extends Activity implements DialogInterface.OnCance
 		case R.id.menu_settings:
 			Intent intent = new Intent(this, RightsalertPreference.class);
 			startActivityForResult(intent, PREFERENCE_ACTIVITY_CODE);
+			break;
+		case R.id.menu_about:
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			View alertView = getLayoutInflater().inflate(R.layout.about, null);
+			TextView codesite = (TextView) alertView.findViewById(R.id.about_codesite);
+			codesite.setMovementMethod(LinkMovementMethod.getInstance());
+			TextView translation = (TextView) alertView.findViewById(R.id.about_translation);
+			translation.setMovementMethod(LinkMovementMethod.getInstance());
+			alert.setView(alertView);
+			alert.setNeutralButton(android.R.string.ok, null);
+			alert.create().show();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
