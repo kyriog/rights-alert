@@ -1,4 +1,4 @@
-Rights alert 0.2a
+Rights alert 0.3a
 =================
 
 License
@@ -19,17 +19,16 @@ The principle is simple: each permission represent an amount of points, and if t
 What's new?
 -----------
 
- + The score of each applications is displayed in the list
- + The user is able to choose if he want to sort applications by name or by score
- + The user can hide system applications
- + French translation has been added
- + Applications icons are now limited to 40 for width to fix a display bug
+ + An "about" popup has been added
+ + The user is now able to change values used to calculate dangerous applications
+ + A little annotation has been added to prevent an error with the new Android SDK
 
 In the next release…
 --------------------
 
- + An about popup will be added
- + The user will be able to customize the score calculation algorithm
+ + The nomenclature of dev and release version code and name will be modified
+ + Settings subtitles will display the actual state of the setting
+ + Default configurations will be added
 
 Links
 -----
@@ -42,6 +41,13 @@ Links
 
 History
 -------
+
+### Version 0.2a
+ + The score of each applications is displayed in the list
+ + The user is able to choose if he want to sort applications by name or by score
+ + The user can hide system applications
+ + French translation has been added
+ + Applications icons are now limited to 40 for width to fix a display bug
 
 ### Version 0.1a
  + First release

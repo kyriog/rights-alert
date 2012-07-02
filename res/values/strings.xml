@@ -55,7 +55,7 @@
     <string name="preferences_alertthreshold_dialogmessage">Amount of points to be reached before an application is considered as dangerous.</string>
    	<string name="preferences_alertthreshold_title">Danger threshold</string>
     
-    <string name="about_version">Version 0.2a</string>
+    <string name="about_version">Version 0.3a</string>
     <string name="about_createdby">Created by Cyril Glapa</string>
     <string name="about_codesite"><a href="https://github.com/cglapa/rights-alert">Source code</a></string>
     <string name="about_translation"><a href="https://www.transifex.com/projects/p/rights-alert/">Translation platform</a></string>

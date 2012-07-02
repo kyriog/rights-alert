@@ -51,7 +51,7 @@
   <string name="preferences_sendsms_title">Envoyer des SMS</string>
   <string name="preferences_alertthreshold_dialogmessage">Quantité de points à atteindre pour qu\'une application soit considérée comme dangereuse.</string>
   <string name="preferences_alertthreshold_title">Seuil de danger</string>
-  <string name="about_version">Version 0.2a</string>
+  <string name="about_version">Version 0.3a</string>
   <string name="about_createdby">Créé par Cyril Glapa</string>
   <string name="about_codesite"><a href="https://github.com/cglapa/rights-alert">Code source</a></string>
   <string name="about_translation"><a href="https://www.transifex.com/projects/p/rights-alert/">Plate-forme de traduction</a></string>
